@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Goals Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <main class="tracker">
+        <h1>My Study Goals</h1>
+
+        <form id="goal-form" class="goal-form">
+            <label for="goal-input" class="visually-hidden">New study goal</label>
+            <input type="text" id="goal-input" placeholder="Enter a study goal..." autocomplete="off" required>
+            <button type="submit">Add goal</button>
+        </form>
+
+        <ul id="goal-list" class="goal-list">
+            <!-- JS will add items here. Each item looks like this:
+            <li class="goal-item">
+                <span class="goal-text">Study JavaScript closures</span>
+                <button class="delete-btn" aria-label="Delete goal">Delete</button>
+            </li>
+            -->
+        </ul>
+
+        <p id="empty-message" class="empty-message">No goals yet. Add your first one above.</p>
+    </main>
+
+</body>
+</html>
