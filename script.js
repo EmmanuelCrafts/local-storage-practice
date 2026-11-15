@@ -18,13 +18,14 @@ goalList.addEventListener('click', (e) => {
 
 
 
-let goals = [];
+let goals = loadGoals();
+renderGoals()
 
 function addGoal() {
     const goal = input.value.trim();
     if(goal) {
         goals.push(goal);
-        localStorage.setItem('goal', JSON.stringify(goals));
+        localStorage.setItem('goals', JSON.stringify(goals));
         input.value = '';
     }
 }
@@ -39,7 +40,6 @@ function renderGoals() {
 
   goals.forEach(goal => {
     const li = createList(goal);
-    console.log(li);
     goalList.appendChild(li);
   })
 }
@@ -70,6 +70,11 @@ function deleteGoal(e) {
 
     goals = goals.filter(goal => goal !== text);
     
-    localStorage.setItem('goal', JSON.stringify(goals));
-    goalList.removeChild(li);
+    localStorage.setItem('goals', JSON.stringify(goals));
+    renderGoals()
+}
+
+function loadGoals() { 
+    const goals = JSON.parse(localStorage.getItem('goals')) || [];
+    return goals;
 }
