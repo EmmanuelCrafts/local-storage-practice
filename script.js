@@ -12,6 +12,10 @@ form.addEventListener('submit', (e) => {
     
 });
 
+goalList.addEventListener('click', (e) => {
+  deleteGoal(e);
+});
+
 
 
 let goals = [];
@@ -23,13 +27,16 @@ function addGoal() {
         localStorage.setItem('goal', JSON.stringify(goals));
         input.value = '';
     }
- console.log(goals);
 }
 
 
 
 function renderGoals() {
   goalList.replaceChildren();
+  
+  goals.length > 0 ? emptyMessage.classList.add("hidden") : emptyMessage.classList
+  .remove('hidden');
+
   goals.forEach(goal => {
     const li = createList(goal);
     console.log(li);
@@ -52,4 +59,17 @@ function createList(text) {
     li.append(span, button);
 
     return li;
+}
+
+function deleteGoal(e) {
+    const btn = e.target.closest(".delete-btn");
+    if(!btn) return;
+
+    const  li = btn.closest('.goal-item');
+    const text = li.querySelector('.goal-text').textContent;
+
+    goals = goals.filter(goal => goal !== text);
+    
+    localStorage.setItem('goal', JSON.stringify(goals));
+    goalList.removeChild(li);
 }
