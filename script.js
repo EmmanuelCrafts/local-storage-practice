@@ -4,6 +4,16 @@ const goalList = document.getElementById('goal-list');
 const emptyMessage = document.getElementById('empty-message');
 const form = document.getElementById('goal-form');
 
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    addGoal();
+    renderGoals();
+    
+});
+
+
+
 let goals = [];
 
 function addGoal() {
@@ -11,13 +21,20 @@ function addGoal() {
     if(goal) {
         goals.push(goal);
         localStorage.setItem('goal', JSON.stringify(goals));
-        input.textContent = '';
+        input.value = '';
     }
+ console.log(goals);
 }
 
-function reanderGoals() {
-  goalList.replaceChild();
-  goals.forEach(goal => createList(goal))
+
+
+function renderGoals() {
+  goalList.replaceChildren();
+  goals.forEach(goal => {
+    const li = createList(goal);
+    console.log(li);
+    goalList.appendChild(li);
+  })
 }
 
 function createList(text) {
@@ -34,5 +51,5 @@ function createList(text) {
 
     li.append(span, button);
 
-    return li
+    return li;
 }
